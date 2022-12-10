@@ -53,8 +53,13 @@ class Hospital extends MX_Controller
         // array to check the message
         $checkdata = [];
         $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('age', 'age', 'required|numeric');
-        $this->form_validation->set_rules('address', 'address', 'required');
+        $this->form_validation->set_rules('age', 'Age', 'required|numeric');
+        $this->form_validation->set_rules('address', 'Address', 'required');
+        $this->form_validation->set_rules('language', 'Language', 'required');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
+        $this->form_validation->set_rules('countryname', 'Country', 'required');
+        $this->form_validation->set_rules('provincename', 'Province', 'required');
+        $this->form_validation->set_rules('munipality', 'Muncipality', 'required');
         $this->form_validation->set_rules('mobile', 'mobile', 'required|numeric|exact_length[10]');
         // form validation rules
         if ($this->form_validation->run() == true) {
@@ -134,7 +139,12 @@ class Hospital extends MX_Controller
             echo "nodata";
         }
     }
-
+    public function admin(){
+        $this->load->view('adminlogin');
+    }
+    public function logout(){
+        $this->load->view('logout');
+    }
     public function fetchSinglePatient(){
         $patient_id = $this->session->flashdata('patientid'); //get data patent id
         echo json_encode($patient_id);
@@ -227,25 +237,25 @@ class Hospital extends MX_Controller
 
     public function sumOfBillings(){
         $patient_id = $this->session->flashdata('patientid'); 
-        $price = $this->hospital_model->sumofPrice($patient_id);
+        $price = $this->hospital_model->sumofPrice($patient_id);//get sum
         echo json_encode($price);
     }
 
 
     public function sumofNetTotal(){
         $patient_id = $this->session->flashdata('patientid'); 
-        $nettotal = $this->hospital_model->sumofNetTotal($patient_id);
+        $nettotal = $this->hospital_model->sumofNetTotal($patient_id); //get sum
         echo json_encode($nettotal);
     }
     public function sumofDiscountAmount(){
         $patient_id = $this->session->flashdata('patientid'); 
-        $discount = $this->hospital_model->sumofDiscountAmoung($patient_id);
+        $discount = $this->hospital_model->sumofDiscountAmoung($patient_id);//get sum
         echo json_encode($discount);
     }
 
     public function sumOfSubTotal(){
         $patient_id = $this->session->flashdata('patientid'); 
-        $sub_total = $this->hospital_model->sumOfSubTotal($patient_id);
+        $sub_total = $this->hospital_model->sumOfSubTotal($patient_id);//get sum
         echo json_encode($sub_total);
     }
 }

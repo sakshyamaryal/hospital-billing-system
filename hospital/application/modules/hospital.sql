@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 07, 2022 at 09:07 AM
+-- Generation Time: Dec 10, 2022 at 12:04 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.19
 
@@ -20,6 +20,45 @@ SET time_zone = "+00:00";
 --
 -- Database: `hospital`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `billings`
+--
+
+CREATE TABLE `billings` (
+  `id` int(11) NOT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `sample_no` int(11) DEFAULT NULL,
+  `billing_date` varchar(100) DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `discount_percent` float DEFAULT NULL,
+  `discount_amount` float DEFAULT NULL,
+  `net_total` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `billings`
+--
+
+INSERT INTO `billings` (`id`, `patient_id`, `sample_no`, `billing_date`, `subtotal`, `discount_percent`, `discount_amount`, `net_total`) VALUES
+(5, 38752577, 85496421, 'Thu Dec 08 2022 21:34:32 GMT+0545 (Nepal Time)', 726, 22, 159.72, 566.28),
+(6, 38752577, 85496422, 'Thu Dec 08 2022 21:35:23 GMT+0545 (Nepal Time)', 5550, 22, 1221, 4329),
+(7, 38752578, 85496423, 'Thu Dec 08 2022 23:41:47 GMT+0545 (Nepal Time)', 21978, 3, 659.34, 21318.7),
+(8, 38752579, 85496424, 'Fri Dec 09 2022 08:28:09 GMT+0545 (Nepal Time)', 276, 3, 8.28, 267.72),
+(9, 38752579, 85496425, 'Fri Dec 09 2022 08:28:14 GMT+0545 (Nepal Time)', 276, 3, 8.28, 267.72),
+(10, 38752579, 85496426, 'Fri Dec 09 2022 08:28:38 GMT+0545 (Nepal Time)', 276, 3, 8.28, 267.72),
+(11, 38752579, 85496427, 'Fri Dec 09 2022 08:31:39 GMT+0545 (Nepal Time)', 242, 12, 29.04, 212.96),
+(12, 38752579, 85496428, 'Fri Dec 09 2022 08:33:35 GMT+0545 (Nepal Time)', 264, 3, 7.92, 256.08),
+(13, 38752579, 85496429, 'Fri Dec 09 2022 08:44:26 GMT+0545 (Nepal Time)', 242, 12, 29.04, 212.96),
+(14, 38752579, 85496430, 'Fri Dec 09 2022 10:36:12 GMT+0545 (Nepal Time)', 1452, 55, 798.6, 653.4),
+(15, 38752578, 85496431, 'Fri Dec 09 2022 10:42:28 GMT+0545 (Nepal Time)', 726, 44, 319.44, 406.56),
+(16, 38752579, 85496432, 'Fri Dec 09 2022 13:46:56 GMT+0545 (Nepal Time)', 1452, 2, 29.04, 1422.96),
+(17, 38752579, 85496433, 'Fri Dec 09 2022 16:27:07 GMT+0545 (Nepal Time)', 144, 12, 17.28, 126.72),
+(18, 38752580, 85496434, 'Sat Dec 10 2022 09:56:18 GMT+0545 (Nepal Time)', 704, 44, 309.76, 394.24),
+(19, 38752580, 85496435, 'Sat Dec 10 2022 15:04:34 GMT+0545 (Nepal Time)', 968, 44, 425.92, 542.08),
+(20, 38752581, 85496436, 'Sat Dec 10 2022 16:46:39 GMT+0545 (Nepal Time)', 782, 52, 406.64, 375.36);
 
 -- --------------------------------------------------------
 
@@ -45,16 +84,20 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `municiples`
+-- Table structure for table `districts`
 --
+
 CREATE TABLE `districts` (
   `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL,
+  `district_name` varchar(150) NOT NULL,
   `municipality_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `districts`
+--
 
-INSERT INTO `districts` (`id`, `name`, `municipality_id`) VALUES
+INSERT INTO `districts` (`id`, `district_name`, `municipality_id`) VALUES
 (1, 'San Diego', 1),
 (2, 'Los Angeles', 2),
 (3, 'San Jose', 3),
@@ -108,7 +151,7 @@ INSERT INTO `districts` (`id`, `name`, `municipality_id`) VALUES
 (51, 'Sunsari', 51),
 (53, 'Sankhuwasaba', 53),
 (54, 'Saptari', 54),
-(55, 'Parsa', 54),
+(55, 'Parsa', 55),
 (56, 'Mahotari', 56),
 (57, 'Siraha', 57),
 (58, 'Siraha', 58),
@@ -142,15 +185,48 @@ INSERT INTO `districts` (`id`, `name`, `municipality_id`) VALUES
 (86, 'Kailali', 86),
 (87, 'Kanchanpur', 87);
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `items`
+--
 
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `sample_no` int(11) DEFAULT NULL,
+  `test_items` varchar(200) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `unit` varchar(100) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `patient_id`, `sample_no`, `test_items`, `quantity`, `unit`, `price`) VALUES
+(2, 38752579, 85496428, 'item45', 12, 'dd', 22),
+(3, 38752579, 85496429, 'item33', 11, '22', 22),
+(4, 38752579, 85496430, 'item453', 33, '33', 44),
+(5, 38752578, 85496431, 'item33', 22, '22int', 33),
+(6, 38752579, 85496432, 'item3', 33, '11', 44),
+(7, 38752579, 85496433, 'jhola', 12, 'kg', 12),
+(8, 38752580, 85496434, 'test item11', 32, 'pcs', 22),
+(9, 38752580, 85496435, 'mahodaya', 22, '33', 44),
+(10, 38752581, 85496436, 'mobile', 23, 'pcs', 34);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `municiples`
+--
 
 CREATE TABLE `municiples` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `province_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 --
 -- Dumping data for table `municiples`
@@ -262,19 +338,19 @@ CREATE TABLE `patients` (
   `address` varchar(60) DEFAULT NULL,
   `mobile` int(11) DEFAULT NULL,
   `patient_id` int(11) DEFAULT NULL,
-  `date` varchar(60) DEFAULT NULL
+  `date` varchar(60) DEFAULT NULL,
+  `municipality_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`id`, `name`, `age`, `gender`, `language`, `country`, `province`, `municipality`, `address`, `mobile`, `patient_id`, `date`) VALUES
-(1, 'ss', NULL, 'm', 'nepali', 'United States', 'Arizona', 'Tucson', '33', 22, 1, 'Wed Dec 07 2022 13:10:41 GMT+0545 (Nepal Time)'),
-(2, 'ss', 22, 'm', 'nepali, hindi, english', 'Nepal', 'Bagmati Kshetra', 'Belkotgadhi Municipality', '33', 45, 1, 'Wed Dec 07 2022 13:12:23 GMT+0545 (Nepal Time)'),
-(5, 'dd', 22, 'm', 'nepali', 'Canada', 'Ontario', 'Ottawa', 'dd', 22, 1, 'Wed Dec 07 2022 13:21:13 GMT+0545 (Nepal Time)'),
-(6, 'sakshyam', 12, 'f', 'nepali, hindi', 'Canada', 'Ontario', 'Ottawa', 'sakshyaf', 22, 45941206, 'Wed Dec 07 2022 13:47:04 GMT+0545 (Nepal Time)'),
-(7, 'aryal', 12, 'm', 'nepali, english', 'India', 'Uttar Pradesh', 'Varanasi', '333', 1111111111, 40922352, 'Wed Dec 07 2022 13:51:53 GMT+0545 (Nepal Time)');
+INSERT INTO `patients` (`id`, `name`, `age`, `gender`, `language`, `country`, `province`, `municipality`, `address`, `mobile`, `patient_id`, `date`, `municipality_id`) VALUES
+(37, 'saks', 12, 'm', 'Nepali', 'India', 'Andhra Pradesh', 'Anantapur', 'o111', 1234567890, 38752578, 'Thu Dec 08 2022 09:36:32 GMT+0545 (Nepal Time)', 23),
+(38, 'aryalsakhyam', 22, 'm', 'Nepali', 'Nepal', 'Province No. 1', 'Sundar Haraicha', 'lok', 1234567890, 38752579, 'Thu Dec 08 2022 23:21:41 GMT+0545 (Nepal Time)', 33),
+(39, 'Thir Bahadur Aryal', 80, 'm', 'Nepali, Hindi, English', 'Nepal', 'Province No. 1', 'Mechinagar', 'Nuwakot', 2147483647, 38752580, 'Sat Dec 10 2022 09:54:34 GMT+0545 (Nepal Time)', 32),
+(40, 'Mobile App Development - II', 23, 'f', 'Nepali, Hindi', 'Nepal', 'Province No. 1', 'Triyuga', 'mad@gmail.com', 2147483647, 38752581, 'Sat Dec 10 2022 16:45:30 GMT+0545 (Nepal Time)', 36);
 
 -- --------------------------------------------------------
 
@@ -314,9 +390,21 @@ INSERT INTO `provinces` (`id`, `name`, `country_id`) VALUES
 --
 
 --
+-- Indexes for table `billings`
+--
+ALTER TABLE `billings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -342,10 +430,22 @@ ALTER TABLE `provinces`
 --
 
 --
+-- AUTO_INCREMENT for table `billings`
+--
+ALTER TABLE `billings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `municiples`
@@ -357,7 +457,7 @@ ALTER TABLE `municiples`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `provinces`

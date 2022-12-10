@@ -119,6 +119,12 @@
 
 </html>
 <script>
+    var provincefetch = '<?php base_url() ?>hospital/provinceFetch';
+    var municipality = ' <?php base_url() ?>hospital/municipalFetch';
+    var insert= <?php base_url() . "hospital/insertRegistrationData" ?>;
+    var random = <?php base_url() ?>'hospital/rand';
+</script>
+<script>
     $(document).ready(function() {
         province_municiple();//function call
 
@@ -257,3 +263,4 @@
 
 
 </script>
+

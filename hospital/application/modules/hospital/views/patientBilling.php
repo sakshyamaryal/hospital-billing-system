@@ -1,3 +1,7 @@
+<?php 
+if(!$_SESSION['username'] && !$_SESSION['password']){
+    header('location:'.base_url().'hospital');
+}?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="<?php echo base_url() ?>css/patientView.css">
@@ -11,6 +15,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="primary"><a href="<?php echo base_url(); ?>hospital/patientDetails">Home</a></li>
+            <li class="primary"><a href="<?php echo base_url(); ?>hospital/logout">Logout</a></li>
         </ul>
     </div>
 </nav>
@@ -110,85 +115,7 @@
 } else { ?>
     <H1>Patient Test Does Not exist</H1>
 <?php } ?>
-
+<script src="<?php echo base_url(); ?>js/patientBilling.js"></script>
 <script>
-    $(document).ready(function() {
-        getTestPrice();
-        getTestDiscountAmount();
-        getTestNetTotal();
-        getTestSubTotal();
-    });
-
-    function getTestPrice() {
-        $.ajax({
-            type: 'ajax',
-            url: 'hospital/sumOfBillings', //url for getting encoded data from the controler and functin
-            async: false,
-            dataType: 'json',
-            success: function(price) {
-                var html = '';
-                if (price) {
-                    // alert(price.price);
-                    // console.log(price.price);
-
-                    html += '<input type="text" class="form-control input-sm" placeholder="NPR ' + price.price + ' " name="" readonly>';
-                }
-                $('.price').html(html);
-            }
-
-        });
-    }
-
-    function getTestNetTotal() {
-        $.ajax({
-            type: 'ajax',
-            url: 'hospital/sumofNetTotal', //url for getting encoded data from the controler and functin
-            async: false,
-            dataType: 'json',
-            success: function(nettotal) {
-                var html = '';
-                if (nettotal) {
-                    html += '<input type="text" class="form-control input-sm" placeholder="NPR ' + nettotal.net_total + ' " name="" readonly>';
-                }
-                $('.nettotal').html(html);
-            }
-
-        });
-    }
-
-    function getTestDiscountAmount() {
-        $.ajax({
-            type: 'ajax',
-            url: 'hospital/sumofDiscountAmount', //url for getting encoded data from the controler and functin
-            async: false,
-            dataType: 'json',
-            success: function(discount) {
-                var html = '';
-                if (discount) {
-                    html += '<input type="text" class="form-control input-sm" placeholder="NPR ' + discount.discount_amount + ' " name="" readonly>';
-                }
-                $('.discount').html(html);
-
-            }
-
-        });
-    }
-
-    function getTestSubTotal() {
-        $.ajax({
-            type: 'ajax',
-            url: 'hospital/sumOfSubTotal', //url for getting encoded data from the controler and functin
-            async: false,
-            dataType: 'json',
-            success: function(sub_total) {
-                var html = '';
-                if (sub_total) {
-                    html += '<input type="text" class="form-control input-sm" placeholder="NPR ' + sub_total.subtotal + ' " name="" readonly>';
-                }
-                $('.subtotal').html(html);
-
-            }
-
-        });
-    }
+  
 </script>

@@ -1,3 +1,7 @@
+<?php 
+if(!$_SESSION['username'] && !$_SESSION['password']){
+    header('location:'.base_url().'hospital');
+}?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
@@ -13,7 +17,8 @@
             <a class="navbar-brand" href="#">Midas Technologies</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="<?=base_url() ?>hospital/billing">Recent Test Billing</a></li>
+            <li class="primary"><a href="<?=base_url() ?>hospital/billing">Recent Test Billing</a></li>
+            <li class="primary"><a href="<?php echo base_url(); ?>hospital/logout">Logout</a></li>
         </ul>
     </div>
 </nav>
@@ -75,55 +80,8 @@
 
 </div>
 <script>
-$(document).ready(function(){
-    //function calls
-    searchbar();
-    registrationBillingPage();
-    preview();
-});
-
-function searchbar() {
-    // search bar keyup function
-    $("#search").on("keyup", function() {
-    var value = $(this).val().toLowerCase(); //searchbar value of each key inserted
-    $(".mytable").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1) //check and view value
-    });
-  });
-  }
-
-  function registrationBillingPage(){
-        $('button:nth-child(2)').click(function(){ //seond button to be selected
-            var patientid = $(this).val(); //value of selected buton to be generated 
-            $.ajax({
-                url: '<?php echo base_url() ?>hospital/preview',//send value to the preview function
-                type: 'GET',
-                data: {
-                    patientid //send get request patient id to controler function
-                },  
-                success:function(data) {
-                    window.location.replace(<?php base_url() ?> 'billing');//refresh the page to billing view
-                }
-               
-            });
-        });
-    }
-
-    function preview() { 
-        $("button:first-child").click(function(){
-           var patientid = $(this).val();//first button to be selected and generate patient id
-            $.ajax({
-                url: '<?php echo base_url() ?>hospital/preview',//send get request to the function
-                type: 'GET',
-                data: {
-                    patientid // sending patentid to preview Page
-                },  
-                success:function(data) {
-                    window.location.replace(<?php base_url() ?> 'viewPreviewData'); //replace the function
-                }
-               
-            });
-            
-        });
-     }
+var previewdata = <?php  base_url() ?> 'viewPreviewData';
+var billing = <?php base_url() ?> 'billing';
+var previews = <?php base_url() ?> 'hospital/preview';
 </script>
+<script src="<?php echo base_url(); ?>js/managePatient.js"></script>

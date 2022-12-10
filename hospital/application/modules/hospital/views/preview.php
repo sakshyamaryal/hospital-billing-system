@@ -1,3 +1,7 @@
+<?php 
+if(!$_SESSION['username'] && !$_SESSION['password']){
+    header('location:'.base_url().'hospital');
+}?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -9,7 +13,9 @@
             <a class="navbar-brand" href="#">Midas Technologies</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="<?php echo base_url(); ?>hospital/patientDetails">Home</a></li>
+            <li class="primary"><a href="<?php echo base_url(); ?>hospital/patientDetails">Home</a></li>
+            <li class="primary"><a href="<?php echo base_url(); ?>hospital/logout">Logout</a></li>
+
         </ul>
     </div>
 </nav>
@@ -60,23 +66,8 @@
         </table>
 
         <script>
-            $(document).ready(function() {
-                patientIdFetch()
-
-            });
-
-            function patientIdFetch() {
-                $('#total').click(function() {
-                    var patientid = $(this).val();
-                    $.ajax({
-                        url: '<?php echo base_url() ?>hospital/preview', //send value to the preview function
-                        type: 'GET',
-                        data: {
-                            patientid //send get request patient id to controler function
-                        }
-                    });
-                    window.location.replace(<?php base_url() ?> 'billingsAndTotal');
-                });
-
-            }
+            var billing = <?php base_url() ?> 'billingsAndTotal';
+            var previews = '<?php base_url() ?>hospital/preview';
         </script>
+
+<script src="<?php echo base_url()?>js/preview.js"></script>
