@@ -1,0 +1,14 @@
+#deceased{
+    background-color:#4383b6;
+	padding-top:10px;
+	margin-bottom:10px;
+	color: white;
+}
+.remove_field{
+	float:right;	
+	cursor:pointer;
+	position : absolute;
+}
+.remove_field:hover{
+	text-decoration:none;
+}
