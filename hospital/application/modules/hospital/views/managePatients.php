@@ -71,6 +71,8 @@ if(!$_SESSION['username'] && !$_SESSION['password']){
 
                             <button class="btn btn-primary border-success align-items-center btn-success" type="button" id='billing' value="<?= $key['patient_id']; ?> ">
                                 <div class="reg">Registration Billing</div></button>
+                            <button class="btn btn-primary d-flex align-items-center btn-warning" type="button" id='btn2' value="<?= $key['patient_id']; ?> ">Delete Patient</a>
+                            </button>
                         </td>
                 </tr>
             <?php  } ?>
@@ -80,8 +82,26 @@ if(!$_SESSION['username'] && !$_SESSION['password']){
 
 </div>
 <script>
-var previewdata = <?php  base_url() ?> 'viewPreviewData';
+var previewdata = <?php  base_url() ?> 'viewPreviewData'; //url for getting preview data in js file
 var billing = <?php base_url() ?> 'billing';
 var previews = <?php base_url() ?> 'hospital/preview';
+dlt();
+function dlt() { 
+        $("button:nth-child(3)").click(function(){
+           var patientid = $(this).val();//first button to be selected and generate patient id
+            $.ajax({
+                url: '<?php echo base_url() ?>hospital/delete',//send get request to the function
+                type: 'POST',
+                data: {
+                    patientid // sending patentid to preview Page
+                }
+                
+            });
+            
+            alert("Deleted");
+            window.location.replace('hospital/patientDetails');
+        });
+     }    
+
 </script>
 <script src="<?php echo base_url(); ?>js/managePatient.js"></script>

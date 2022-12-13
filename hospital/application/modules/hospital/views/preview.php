@@ -57,8 +57,8 @@ if(!$_SESSION['username'] && !$_SESSION['password']){
                         <td><?= $key['date']; ?></td>
                         <td><?= $key['language']; ?></td>
                         <td>
-                            <button class="btn btn-primary d-flex align-items-center btn-warning" type="button" id='total' value="<?= $key['patient_id']; ?> ">Billings</a>
-                            </button>
+                            <button class="btn btn-primary d-flex align-items-center btn-warning" type="button" id='total' value="<?= $key['patient_id']; ?> ">Billings</a></button>
+
                         </td>
                     </tr>
                 <?php  } ?>

@@ -63,22 +63,3 @@ if (isset($_POST['submit']) ==  TRUE) {
 
 ?>
 
-<script>
-    // $(document).ready(function(){
-    //     frontendValdiation();
-    // });
-    // function frontendValdiation(){
-    //     $('button').click(function(){
-    //         if($('#form2Example11').val() == ''){
-    //             $('.user').html("Username field is required");
-    //         }
-    //         if($('#form2Example22').val() == ''){
-    //             $('.pass').html("Username field is required");
-    //         }
-    //         if($('#form2Example22').val() != 'admin' || $('#form2Example22').val() != 'admin'  ){
-    //             $('.incorrectpassword').html("incorrect username or password");
-    //         }
-    //     });
-
-    // }
-</script>

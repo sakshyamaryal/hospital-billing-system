@@ -182,4 +182,10 @@ class Hospital_model extends CI_Model
         ->get_where('billings',$where);
          return $data->row();
     }
+
+    public function delete($id){
+
+        $query = $this->db->delete('patients', array('patient_id' => $id));
+        return $query;
+    }
 }

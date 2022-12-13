@@ -33,7 +33,8 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label for="name">Name* </label>
-                        <input type="text" class="form-control input-sm" id="name" placeholder="" name="name">
+                        <input type="text" class="form-control input-sm" id="name" placeholder="" name="name" value="<?php echo set_value('name'); ?>" >
+                        <?php echo form_error('name'); ?>  
                     </div>
 
 
@@ -41,10 +42,12 @@
                     <div class="form-group col-md-6 col-sm-6">
                         <label for="mobile">Age*</label>
                         <input type="text" class="form-control input-sm" id="age" placeholder="" name="age">
+                        <?php echo form_error('age'); ?>  
                     </div>
 
                     <div class="form-group col-md-6 col-sm-6">
-                        <label for="mobile">Gender*</label><br>
+                        <label for="gender">Gender*</label><br>
+                        <?php echo form_error('gender'); ?>  
                         <input type="radio" class="gender" name="option" value="m">
                         <label for="male">Male</label>
                         <input type="radio" class="gender" name="option" value="f">
@@ -52,7 +55,8 @@
 
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
-                        <label for="mobile">language*</label><br>
+                        <label for="language">language*</label><br>
+                        <?php echo form_error('language'); ?>  
                         <input type="checkbox" id="nepali" name="lang" value="Nepali">
                         <label for="nepali">Nepali</label>
                         <input type="checkbox" id="hindi" name="lang" value="Hindi">
@@ -68,15 +72,18 @@
                     <h3 class="panel-title">Contact Information</h3><br><br>
                     <div class="form-group col-md-6 col-sm-6">
                         <label for="address">Address*</label>
+                        <?php echo form_error('adress'); ?>  
                         <input type="text" class="form-control input-sm" id="address" placeholder="" name="address">
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label for="number">Mobile*</label>
+                        <?php echo form_error('mobile'); ?>  
                         <input type="text" class="form-control input-sm" id="mobile" placeholder="" name="mobile">
                     </div>
 
                     <div class="form-group col-md-6 col-sm-6">
                         <label for="country">Select Country *</label>
+                        <?php echo form_error('country'); ?>  
                         <select class="form-control input-sm" id="country" name="country">
                             <option>-- Country --</option>
                             <?php

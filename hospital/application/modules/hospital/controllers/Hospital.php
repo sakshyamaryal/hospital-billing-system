@@ -98,6 +98,7 @@ class Hospital extends MX_Controller
                 'message' => validation_errors()
 
             );
+            // $this->load->view('registration');
         }
         // encode data for validation error or success message
         echo json_encode($checkdata);
@@ -126,7 +127,9 @@ class Hospital extends MX_Controller
     public function preview()
     {
         $id = $this->input->get('patientid');
-        $this->session->set_flashdata('patientid', $id); //pass patient id to another function
+        $patientid = $this->input->post('patientid');
+        $this->session->set_flashdata('patientid', $id); 
+        $this->session->set_flashdata('idPatient', $patientid);//pass patient id to another function
     }
     public function viewPreviewData()
     {
@@ -257,5 +260,11 @@ class Hospital extends MX_Controller
         $patient_id = $this->session->flashdata('patientid'); 
         $sub_total = $this->hospital_model->sumOfSubTotal($patient_id);//get sum
         echo json_encode($sub_total);
+    }
+
+    public function delete(){
+        $patient_id = $this->session->flashdata('idPatient'); 
+        $pid = $this->input->post('patientid');
+        $sub_total = $this->hospital_model->delete($pid);//get sum
     }
 }

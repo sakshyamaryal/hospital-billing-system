@@ -3,6 +3,7 @@ $(document).ready(function(){
     searchbar();
     registrationBillingPage();
     preview();
+    dlt();
 });
 
 function searchbar() {
@@ -49,3 +50,4 @@ function searchbar() {
             
         });
      }
+
